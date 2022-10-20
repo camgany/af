@@ -6,6 +6,7 @@
 extents = Vector2( 3, 7.6131 )
 
 [node name="CollisionShape2D" type="CollisionShape2D"]
+position = Vector2( 0, -5 )
 shape = SubResource( 1 )
 script = ExtResource( 1 )
 

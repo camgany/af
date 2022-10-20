@@ -186,9 +186,11 @@ anims/jump = SubResource( 4 )
 anims/muerte = SubResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 2, -65 )
+position = Vector2( 0, -56 )
 current = true
 zoom = Vector2( 0.36, 0.36 )
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
 drag_margin_left = 0.01
 drag_margin_top = 1.0
 drag_margin_right = 0.01

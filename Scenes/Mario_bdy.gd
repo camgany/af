@@ -135,6 +135,7 @@ func transformar():
 	if(transformacion < 2):
 		get_node("Sprite").texture = mario_g
 		
+		
 	
 func destransformar():
 	if(inmunidad):
