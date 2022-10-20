@@ -1,0 +1,101 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scripts/ParallaxBackground.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/logo.png" type="Texture" id=2]
+[ext_resource path="res://Jugar.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFontData" id=7]
+font_path = "res://assets/Super_Plumber_Brothers.ttf"
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 7 )
+
+[sub_resource type="DynamicFontData" id=8]
+font_path = "res://assets/Super_Plumber_Brothers.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 60
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 8 )
+
+[sub_resource type="DynamicFontData" id=5]
+font_path = "res://assets/Super_Plumber_Brothers.ttf"
+
+[sub_resource type="DynamicFont" id=6]
+size = 30
+outline_size = 3
+outline_color = Color( 0, 0.129412, 0.113725, 1 )
+font_data = SubResource( 5 )
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxMenu" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -386.0
+margin_top = -299.0
+margin_right = 386.0
+margin_bottom = 230.0
+custom_constants/separation = 0
+
+[node name="Logo" type="TextureRect" parent="VBoxMenu"]
+margin_right = 772.0
+margin_bottom = 323.0
+texture = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxMenu"]
+margin_top = 323.0
+margin_right = 772.0
+margin_bottom = 525.0
+custom_constants/separation = 70
+alignment = 1
+
+[node name="Jugar" type="Button" parent="VBoxMenu/VBoxContainer"]
+margin_right = 772.0
+margin_bottom = 66.0
+custom_colors/font_color_hover = Color( 0.980392, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 0.243137, 0.996078, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Jugar"
+flat = true
+script = ExtResource( 3 )
+
+[node name="Salir" type="Button" parent="VBoxMenu/VBoxContainer"]
+margin_top = 136.0
+margin_right = 772.0
+margin_bottom = 202.0
+custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.172549, 1, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Salir"
+flat = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -40.0
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_left = 309.0
+margin_top = 4.0
+margin_right = 714.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 6 )
+text = "Juego realizado por CamiG y Richyfits"
+align = 1
+valign = 1
+
+[node name="ParallaxBackground" parent="." instance=ExtResource( 1 )]
+
+[connection signal="pressed" from="VBoxMenu/VBoxContainer/Jugar" to="VBoxMenu/VBoxContainer/Jugar" method="_on_Jugar_pressed"]
+[connection signal="pressed" from="VBoxMenu/VBoxContainer/Salir" to="VBoxMenu/VBoxContainer/Jugar" method="_on_Salir_pressed"]
