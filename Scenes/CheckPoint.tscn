@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/CheckPoint.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 106, 123 )
+
+[node name="CheckPoint" type="Area2D"]
+position = Vector2( 1158, 20 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 4.71239
+scale = Vector2( 1.01027, 0.0243593 )
+shape = SubResource( 1 )
+one_way_collision = true
+
+[connection signal="body_entered" from="." to="." method="_on_CheckPoint_body_entered"]

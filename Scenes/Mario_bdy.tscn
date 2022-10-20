@@ -1,0 +1,199 @@
+[gd_scene load_steps=30 format=2]
+
+[ext_resource path="res://Scenes/Mario_bdy.gd" type="Script" id=1]
+[ext_resource path="res://assets/mario_c.png" type="Texture" id=2]
+[ext_resource path="res://assets/mario_g.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/MarioGrande.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/MarioGrande2.tscn" type="PackedScene" id=6]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 6.61414, 7.6131 )
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "agachado"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "caminando"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "jump"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "muerte"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=24]
+states/agachado/node = SubResource( 7 )
+states/agachado/position = Vector2( 409, 119 )
+states/caminando/node = SubResource( 8 )
+states/caminando/position = Vector2( 437, 47 )
+states/idle/node = SubResource( 9 )
+states/idle/position = Vector2( 211, 98 )
+states/jump/node = SubResource( 26 )
+states/jump/position = Vector2( 82, 57 )
+states/muerte/node = SubResource( 11 )
+states/muerte/position = Vector2( 204, 183 )
+transitions = [ "idle", "caminando", SubResource( 12 ), "caminando", "idle", SubResource( 13 ), "caminando", "agachado", SubResource( 17 ), "idle", "agachado", SubResource( 18 ), "agachado", "idle", SubResource( 19 ), "idle", "muerte", SubResource( 20 ), "caminando", "muerte", SubResource( 21 ), "agachado", "muerte", SubResource( 22 ), "idle", "jump", SubResource( 27 ), "jump", "muerte", SubResource( 28 ), "jump", "idle", SubResource( 29 ) ]
+start_node = "idle"
+end_node = "muerte"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=25]
+
+[sub_resource type="Animation" id=2]
+resource_name = "agachado"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "caminando"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 2 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 5, 5, 5, 5 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+
+[node name="Mario_bdy" type="KinematicBody2D" groups=["player"]]
+position = Vector2( 977, 89 )
+script = ExtResource( 1 )
+VEL_DESPL = 125.0
+VEL_SALTO = 150.0
+mario_c = ExtResource( 2 )
+mario_g = ExtResource( 3 )
+trans_c = ExtResource( 5 )
+trans_g = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+hframes = 7
+
+[node name="CollisionShape2D" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0.889008, 0.386902 )
+shape = SubResource( 6 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="posiciones" type="Position2D" parent="."]
+position = Vector2( 15, -3 )
+scale = Vector2( 0.35, 0.35 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 24 )
+anim_player = NodePath("../animaciones")
+active = true
+parameters/playback = SubResource( 25 )
+
+[node name="animaciones" type="AnimationPlayer" parent="."]
+anims/agachado = SubResource( 2 )
+anims/caminando = SubResource( 1 )
+anims/idle = SubResource( 3 )
+anims/jump = SubResource( 4 )
+anims/muerte = SubResource( 5 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 2, -65 )
+current = true
+zoom = Vector2( 0.36, 0.36 )
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+drag_margin_left = 0.01
+drag_margin_top = 1.0
+drag_margin_right = 0.01
+drag_margin_bottom = 1.0
+
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Finish.gd" type="Script" id=1]
+[ext_resource path="res://assets/lvl1.png" type="Texture" id=2]
+[ext_resource path="res://assets/flag.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 2, 72 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 8 )
+
+[node name="Finish" type="Area2D"]
+position = Vector2( 3147, -35 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 13, 60 )
+shape = SubResource( 1 )
+
+[node name="GroundF" type="StaticBody2D" parent="." groups=["gf"]]
+position = Vector2( 13, 140 )
+
+[node name="Sprite" type="Sprite" parent="GroundF"]
+texture = ExtResource( 2 )
+vframes = 2
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundF"]
+shape = SubResource( 2 )
+
+[node name="Flag" type="KinematicBody2D" parent="." groups=["flag"]]
+
+[node name="Sprite" type="Sprite" parent="Flag"]
+scale = Vector2( 1.5625, 1.25 )
+texture = ExtResource( 3 )
+
+[connection signal="body_entered" from="." to="." method="_on_Finish_body_entered"]

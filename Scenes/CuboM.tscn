@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/CuboM.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Moneda_Bonus.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Hongo.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/cubos.png" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "cubo_roto"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.9
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 1, 0 ]
+}
+
+[node name="CuboM" type="StaticBody2D" groups=["cubo", "obs", "suelo"]]
+position = Vector2( 248, 56 )
+script = ExtResource( 1 )
+cantidad = 1
+moneda = ExtResource( 2 )
+hongo = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 5 )
+hframes = 5
+frame = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="animacion" type="AnimationPlayer" parent="."]
+autoplay = "normal"
+anims/cubo_roto = SubResource( 2 )
+anims/normal = SubResource( 3 )
+
+[node name="SpawnPoint" type="Position2D" parent="."]
+position = Vector2( 0, -19 )

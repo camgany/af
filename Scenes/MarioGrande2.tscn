@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7, 15.6131 )
+
+[node name="CollisionShape2D" type="CollisionShape2D"]
+shape = SubResource( 1 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( -0.110992, -15.6131 )
+enabled = true
+cast_to = Vector2( 0, -1 )
+
+[node name="RayCast2P" type="RayCast2D" parent="."]
+position = Vector2( -0.110992, 15.3869 )
+enabled = true
+cast_to = Vector2( 0, 1 )
